@@ -1,13 +1,19 @@
 # Multilayer Neural Network - Python implementation from scratch
 
 ### Synopsis ###
-This project aims to implement an Artifical Neural Network with multiple layers from scratch with Python langugage.
+This project aims to implement an Artifical Neural Network with multiple layers from scratch with Python language.
 Here are the main characteristics of the implemented neural network: 
 
 * Multiple hidden layers of different sizes 
 * Feedforward phase following by a backpropagation from the output layer to the input layer
 * Sequential learning (weights are updated after each iteration)
 * Personnalization of the activation function for the hidden layers and the output layer (by default tansig and logsig respectively)
+
+The goal is not to obtain the lowest error rate as possible, rather to build a functional neural network.
+
+### Results with MNIST dataset ###
+
+The implemented neural network has been tested with the MNIST dataset (handwritten digits). The goal is to recognize digits form 0 to 9. After a training phase of 40 epochs, it gives an accuracy of 92% on the test set. The following graph shows the evolution of the accuracy through the epochs: it increases since the network is learning during this training phase.
 
 ### Project content ###
 
