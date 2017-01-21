@@ -3,6 +3,7 @@
 ### Synopsis ###
 This project aims to implement an Artifical Neural Network with multiple layers from scratch with Python langugage.
 Here are the main characteristics of the implemented neural network: 
+
 * Multiple hidden layers of different sizes 
 * Feedforward phase following by a backpropagation from the output layer to the input layer
 * Sequential learning (weights are updated after each iteration)
@@ -11,6 +12,7 @@ Here are the main characteristics of the implemented neural network:
 ### Project content ###
 
 Content of this project: 
+
 * folder 'network': contains modules to build the network
 * folder 'data': contains data used for the training and testing phases (to be added) with modules that can be used for data preprocessing (normalization)
 * Python Notebook 'ann_test': illustration of the implemented network with MNIST dataset
