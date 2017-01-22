@@ -2,6 +2,10 @@
 
 ### Synopsis ###
 This project aims to implement an Artifical Neural Network with multiple layers from scratch with Python language.
+A Neural Network has this kind of structure, with one input layer (purple units), one or several hidden layers (green units) and one output layer (pink units):
+
+![Example of neural network structure (1-2-1)](img/feedforwardnn.png)
+
 Here are the main characteristics of the implemented neural network: 
 
 * Multiple hidden layers of different sizes 
@@ -15,7 +19,7 @@ The goal is not to obtain the lowest error rate as possible, rather to build a f
 
 The implemented neural network has been tested with the MNIST dataset (handwritten digits). The goal is to recognize digits form 0 to 9. After a training phase of 40 epochs, it gives an accuracy of 92% on the test set. The following graph shows the evolution of the accuracy of the prediciton on the training set through the epochs: it increases since the network is learning during this training phase.
 
-![Accuracy graph](ANN/img/training_acc_graph.png)
+![Evolution of the prediction accuracy of the training set](img/training_acc_graph.png)
 
 ### Project content ###
 
