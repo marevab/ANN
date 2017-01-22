@@ -15,12 +15,18 @@ from __future__ import unicode_literals
 import math
 import pickle
 import numpy as np
+import matplotlib.pylab as plt
 
 import activation_function
 
 class Network:
 
-	""" This class defines a neural network structure and train it. """
+	""" This class defines a neural network structure and train it.
+	For the whole class, let define:
+	N be the number of samples
+	P the number of features
+	C the number of output dimension (eg: for a classification task with 10 classes, C = 10)
+	"""
 
 	def __init__(self, dims):
 		""" The constructor of a Network element consists of a list of integers that correspond to
@@ -71,7 +77,7 @@ class Network:
 		Based on this given input vector, the neurons values are computed.
 
 		Arguments:
-		x    					vector 						data sample
+		x    					P x 1 vector 				data sample
 
 		"""
 
@@ -100,7 +106,7 @@ class Network:
 
 		Arguments:
 		learning_rate    		double 						learning_rate for the weights update
-		label 					array 						expected output, same size as the output layer
+		label 					N x C array					expected output, same size as the output layer
 		"""
 
 		delta_next_layer = 0
@@ -127,20 +133,27 @@ class Network:
 			self.bias[s + 1] = self.bias[s + 1] + learning_rate * delta
 
 
-	def train(self, data, label, learning_rate, nb_epochs):
+	def train(self, data, label, learning_rate, nb_epochs, verb_print=True, verb_plot=True):
 		""" This functin enables to train a neural network. The network is trained with the dataset 'data' with
 		the corresponding expected answers 'label'.
 		A sample of the training dataset corresponds to a row of 'data'.
-		Let N be the number of samples, P the number of features, C the number of output dimension.
 
 		Arguments:
 		data    				N x P array 				dataset
-		label 					N x C array  				expected answer / label
+		label 					N x C array					expected answer / label
 		learning_rate    		double 						learning_rate for the weights update
 		nb_epochs				integer 					number of epochs (limit)
+		verb_print 				boolean 					True if information about the current epoch is printed
+		verb_plot 				boolean 					True: plot graph with the evolution of the accuracy through the epochs
 		"""
 
+		# Save the accuracy of the training phase through the epochs
+		training_acc = np.zeros(nb_epochs)
+
 		for epoch in range(nb_epochs):
+
+			print
+			print "Epoch {}".format(epoch + 1)
 
 		 	# Sequential learning: sample by sample
 		 	for i in range(len(data)):
@@ -152,7 +165,16 @@ class Network:
 		 		# Backpropagation
 		 		self.backpropagate(learning_rate, label[i,:])
 
-		 	print("Epoch {}: OK".format(epoch + 1))
+		 		# Print the evolution of the training phase
+		 		if verb_print and i % (len(data)  / 30) == 0:
+		 			print '#',
+
+		 	# Training accuracy at the current epoch
+		 	training_acc[epoch] = self.test(data, label, verb_print=False)['acc']
+
+		 # Plot graph
+		if verb_plot:
+			self.plot_training_acc(training_acc)
 
 
 	def test(self, data, label, verb_print=True):
@@ -162,18 +184,21 @@ class Network:
 
 		Arguments:
 		data    				N x P array 				dataset
-		label 					N vector  					expected answer / label
+		label 					N x C array 				expected answer / label
 		verb_print 				boolean 					information printing
 
 		Returns:
 		res 					dictionnary 				contains results of the test phase
 			'prediction'		vector 						predictions made by the network
 			'accuracy' 			double 						accuracy obtained
-
-
 		"""
 
-		prediction = np.zeros(len(label))
+		# Transform the label variable into a N x 1 vector
+		# eg: [0, 0, 0, 1] gives 3, [0, 0, 1, 0] gives 2
+		label_single = np.where(label)[1]
+
+		# Initialize prediction
+		prediction = np.zeros(len(label_single))
 
 		for i in range(len(data)):
 
@@ -185,7 +210,7 @@ class Network:
 			# Classification
 			prediction[i] = np.argmax(softmax)
 
-		accuracy = np.mean(prediction == label)
+		accuracy = np.mean(prediction == label_single)
 
 		if verb_print:
 			print("Accuracy obtained: {}".format(accuracy))
@@ -197,6 +222,20 @@ class Network:
 		return res
 
 
+	def plot_training_acc(self, training_acc):
+		""" This method enables to plot the evolution of the accuracy of the training set
+		through the epochs.
+
+		Arguments:
+		training_acc 			array 						accuracy of the training set
+		"""
+
+		plt.plot(range(1, len(training_acc) + 1), training_acc)
+		plt.title('Evolution of the accuracy of the training set through the epochs')
+		plt.xlabel('epochs')
+		plt.ylabel('accuracy')
+
+
 	def save(self, filename):
 		""" This function enables to save the current state of the network into a file.
 
@@ -205,8 +244,8 @@ class Network:
 		"""
 
 		with open(filename, 'wb') as myfile:
-    		pickler = pickle.Pickler(myfile)
-    		pickler.dump(self)
+			pickler = pickle.Pickler(myfile)
+			pickler.dump(self)
 
 		print "The network has been saved into the file 'network_pickle.p'. "
 
