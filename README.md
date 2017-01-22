@@ -13,7 +13,9 @@ The goal is not to obtain the lowest error rate as possible, rather to build a f
 
 ### Results with MNIST dataset ###
 
-The implemented neural network has been tested with the MNIST dataset (handwritten digits). The goal is to recognize digits form 0 to 9. After a training phase of 40 epochs, it gives an accuracy of 92% on the test set. The following graph shows the evolution of the accuracy through the epochs: it increases since the network is learning during this training phase.
+The implemented neural network has been tested with the MNIST dataset (handwritten digits). The goal is to recognize digits form 0 to 9. After a training phase of 40 epochs, it gives an accuracy of 92% on the test set. The following graph shows the evolution of the accuracy of the prediciton on the training set through the epochs: it increases since the network is learning during this training phase.
+
+![Accuracy graph](ANN/img/training_acc_graph.png)
 
 ### Project content ###
 
@@ -41,6 +43,11 @@ mynetwork.test(data_test, label_test)
 ```
 
 A complete code example is provided by the Python Notebook 'ann_test.ipynb'.
+
+### Dependencies ###
+
+- numpy 
+- matplotlib
 
 ### Author ###
 
