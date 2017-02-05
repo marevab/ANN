@@ -1,7 +1,7 @@
 # Multilayer Neural Network - Python implementation from scratch
 
 ### Synopsis ###
-This project aims to implement an Artifical Neural Network with Python language. Since there are plenty of neural network librairies, the purpose of this project is not to obtain the most efficient neural network, rather to build a functional one for a better understanding of its mechanism.
+This project aims to implement an Artifical Neural Network with Python language. Since there are plenty of neural network librairies, the purpose of this project is not to obtain the most efficient neural network, rather to build a functional one for a better understanding of its mechanism. I train and test the neural network I implemented with MNIST dataset.
 
 Neural networks are really efficient tools in machine learning field whose applications are classification, regression,
 features extraction, pattern recognition. A neural network is an interconnected group of nodes, whose structure and mechanism are inspired by the the neurons of human brain. The nodes of neural networks are called _neurons_ and they are organized into groups that we call _layer_. Neurons of a same layer are connected to neurons of neighbor layers but there is no connection between neurons of a same layer. Connections between neurons are all weighted. We can define 3 types of layers for classic neural networks:
@@ -33,6 +33,14 @@ The implemented neural network has been tested with the MNIST dataset (handwritt
 <p align="center">
   <img src="img/training_acc_graph.png" alt="Evolution of the prediction accuracy of the training set" />
 </p>
+
+I wrote the digits 3, 6 and 8 with Paint and I asked my neural network to recognize the digits (after it has been trained for 40 epochs).
+
+<p align="center">
+  <img src="img/3-6-8.png" alt="Digits 3-6-8 written by myself" />
+</p>
+
+Hopefully the neural network made the correct predictions: [3, 6, 8].
 
 ### Project content ###
 
