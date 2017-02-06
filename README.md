@@ -16,7 +16,7 @@ This structure is illustrated below, with an input layer of 2 neurons, 2 hidden 
   <img src="img/feedforwardnn.png" alt="Example of neural network structure (2-3-4-1)" />
 </p>
 
-In a feedforward neural network, a signal arrives at the input layer, propagates into the hidden layers until it reaches the output layer to give an output that corresponds to the task that the network has to achieve (here, a classification task with 10 classes): this is the feedforward phase. 
+In a feedforward neural network, a signal arrives at the input layer, propagates into the hidden layers until it reaches the output layer to give an output that corresponds to the task that the network has to achieve: this is the feedforward phase. 
 This output is compared to the expected result (label) and the corresponding error is used to update the weights of the connections: this is the backpropagation. In this way the network becomes more and more able to achieve its task.
 
 Here are the main characteristics of the implemented neural network: 
@@ -28,13 +28,36 @@ Here are the main characteristics of the implemented neural network:
 
 ### Results with MNIST dataset ###
 
-The implemented neural network has been tested with the MNIST dataset (handwritten digits). The goal is to recognize digits form 0 to 9. After a training phase of 40 epochs, it gives an accuracy of 92% on the test set. The following graph shows the evolution of the accuracy of the prediciton on the training set through the epochs: it increases since the network is learning during this training phase.
+The implemented neural network has been trained with the MNIST dataset (handwritten digits). The goal is to recognize digits form 0 to 9. I chose the following neural network structure:
+
+- 784 input neurons (as the samples are 28x28 images)
+- 1 hidden layer of 20 neurons
+- 10 output neurons (as there are 10 classes)
+
+The following graph illustrates the learning phase: the accuracy of the prediction on the training set increases through the epochs.
 
 <p align="center">
   <img src="img/training_acc_graph.png" alt="Evolution of the prediction accuracy of the training set" />
 </p>
 
-I wrote the digits 3, 6 and 8 with Paint and I asked my neural network to recognize the digits (after it has been trained for 40 epochs).
+After a training phase of 40 epochs, it gives an **accuracy of 92% on the test set** (the test set is still from MNIST dataset). An efficient way of analyzing the predictions made by the neural network is to use a confusion matrix: it compares the true labels of the samples of the test set (left side of the table) and the predicted ones (upper row of the table).
+
+|        | **0** | **1** |**2** | **3** | **4** | **5** | **6** | **7** | **8** | **9** |
+|:------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|
+| **0** | 951 |    1 |    4 |    1|    2|    3|   10|    3|    3|    2|
+| **1** | 0 | 1115|    4|    4|    1|    1|    1|    6|    3|   0|
+| **2** |  15|    3|  937|   20|   10|    3|  11|   9|   20|    4|
+| **3** |10 |    2|   19|  908|    2|  29|    2|  18|   13|   7|
+| **4** |  0|    1|    3|    0|  912|    0|   19|    4|    5|   38|       
+| **5** |  12|    3  |3|   26|    6|  795|   12|    4|   19|   12|       
+| **6** | 22  | 1|    5|    1|  11|   13|  900|    1|    4|    0|       
+| **7** |   5|   10|   16|    9|    3|    0 |  0|  963|    3|   19|      
+| **8** |  11|    6|    1|   19|    8|   16|   12|    6 |884|   11|       
+| **9** |  6|    5|    0|    7|   25|    6|    0|   13|   16|  931 |
+
+The diagonal numbers represent the numbers of samples of class _i_ that has been classified as class _i_ (correct prediction).
+
+Moreover I did another test and I wrote myself the digits 3, 6 and 8 with Paint and I asked my neural network to recognize the digits (after it has been trained for 40 epochs).
 
 <p align="center">
   <img src="img/3-6-8.png" alt="Digits 3-6-8 written by myself" />
