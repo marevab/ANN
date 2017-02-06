@@ -40,22 +40,13 @@ The following graph illustrates the learning phase: the accuracy of the predicti
   <img src="img/training_acc_graph.png" alt="Evolution of the prediction accuracy of the training set" />
 </p>
 
-After a training phase of 40 epochs, it gives an **accuracy of 92% on the test set** (the test set is still from MNIST dataset). An efficient way of analyzing the predictions made by the neural network is to use a confusion matrix: it compares the true labels of the samples of the test set (left side of the table) and the predicted ones (upper row of the table).
+After a training phase of 40 epochs, it gives an **accuracy of 92% on the test set** (the test set is still from MNIST dataset). An efficient way of analyzing the predictions made by the neural network is to use a confusion matrix: it compares the true labels of the samples of the test set and the predicted ones.
 
-|        | **0** | **1** |**2** | **3** | **4** | **5** | **6** | **7** | **8** | **9** |
-|:------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|
-| **0** | 951 |    1 |    4 |    1|    2|    3|   10|    3|    3|    2|
-| **1** | 0 | 1115|    4|    4|    1|    1|    1|    6|    3|   0|
-| **2** |  15|    3|  937|   20|   10|    3|  11|   9|   20|    4|
-| **3** |10 |    2|   19|  908|    2|  29|    2|  18|   13|   7|
-| **4** |  0|    1|    3|    0|  912|    0|   19|    4|    5|   38|       
-| **5** |  12|    3  |3|   26|    6|  795|   12|    4|   19|   12|       
-| **6** | 22  | 1|    5|    1|  11|   13|  900|    1|    4|    0|       
-| **7** |   5|   10|   16|    9|    3|    0 |  0|  963|    3|   19|      
-| **8** |  11|    6|    1|   19|    8|   16|   12|    6 |884|   11|       
-| **9** |  6|    5|    0|    7|   25|    6|    0|   13|   16|  931 |
+<p align="center">
+  <img src="img/confusion_matrix.png" alt="Confusion matrix" />
+</p>
 
-The diagonal numbers represent the numbers of samples of class _i_ that has been classified as class _i_ (correct prediction).
+The diagonal numbers (green) represent the numbers of samples of class _i_ that has been classified as class _i_ (correct prediction). In a given row the diagonal element is the highest, which means that most of the time the correct class is predicted!
 
 Moreover I did another test and I wrote myself the digits 3, 6 and 8 with Paint and I asked my neural network to recognize the digits (after it has been trained for 40 epochs).
 
